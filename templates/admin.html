@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f0f2f5;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      min-height: 100vh;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    form {
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    label {
+      width: 100%;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+      color: #444;
+      text-align: left;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: 0.2s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+    }
+
+    button {
+      padding: 0.75rem 2rem;
+      background-color: #007bff;
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h2>Edit Metamask Email Fields</h2>
+  <form method="POST">
+    <label>From:</label>
+    <input type="text" name="from" value="{{ data.from }}">
+
+    <label>Network:</label>
+    <select name="network">
+      <option value="Ethereum" {% if data.network == "Ethereum" %}selected{% endif %}>Ethereum</option>
+      <option value="Polygon" {% if data.network == "Polygon" %}selected{% endif %}>Polygon</option>
+      <option value="BNB" {% if data.network == "BNB" %}selected{% endif %}>BNB</option>
+      <option value="Arbitrum" {% if data.network == "Arbitrum" %}selected{% endif %}>Arbitrum</option>
+      <option value="Avalanche" {% if data.network == "Avalanche" %}selected{% endif %}>Avalanche</option>
+      <option value="Tron" {% if data.network == "Tron" %}selected{% endif %}>Tron</option>
+    </select>
+
+    <label>Amount:</label>
+    <input type="text" name="amount" value="{{ data.amount }}">
+
+    <label>To:</label>
+    <input type="text" name="to" value="{{ data.to }}">
+
+    <label>Txn Hash:</label>
+    <input type="text" name="Txnhash" value="{{ data.Txnhash }}">
+
+    <button type="submit">Update</button>
+
+   <!-- <p style="text-align: center; margin-top: 20px;">
+      <button onclick="window.print()" style="padding: 10px 25px; font-size: 16px;">Save as PDF</button>
+    </p>-->
+    
+  </form>
+</body>
+</html>
