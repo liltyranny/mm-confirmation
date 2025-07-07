@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask_cors import CORS
 import json
 import os
 
 app = Flask(__name__)
+CORS(app)  # ✅ Enable CORS for external access (e.g. from Cloudflare Pages)
 
 # Path to JSON data file
 DATA_FILE = "data/data.json"
@@ -19,22 +21,22 @@ if not os.path.exists(DATA_FILE):
             "Txnhash": ""
         }, f, indent=2)
 
-# Utility: Load data from JSON
+# Load data from JSON
 def load_data():
     with open(DATA_FILE, "r") as f:
         return json.load(f)
 
-# Utility: Save data to JSON
+# Save data to JSON
 def save_data(data):
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=2)
 
-# Homepage - will show the main Metamask-style page
+# Home page (Metamask-style view)
 @app.route("/")
 def home():
     return render_template("metamask.html", data=load_data())
 
-# Admin panel for updating values
+# Admin panel
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
     data = load_data()
@@ -48,7 +50,7 @@ def admin():
         return redirect(url_for("admin"))
     return render_template("admin.html", data=data)
 
-# Dedicated route to metamask page (optional, since home uses it)
+# Metamask page
 @app.route("/metamask")
 def metamask():
     return render_template("metamask.html", data=load_data())
@@ -58,6 +60,11 @@ def metamask():
 def receipt():
     return render_template("receipt.html", data=load_data())
 
+# ✅ NEW: API endpoint to return JSON for Cloudflare Pages
+@app.route("/api/data")
+def api_data():
+    return jsonify(load_data())
+
 # Run app
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=8080)  # ✅ Explicitly define host and port for Replit

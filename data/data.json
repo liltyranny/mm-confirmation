@@ -1,7 +1,7 @@
 {
-  "from": "0x5bD13Bac2F01a4beA2A2cA6Ba68e868A4d72C",
-  "network": "Ethereum",
-  "amount": "10,000,000.00 USDT",
-  "to": "0x5bD13Bac2F01a4beA2A2cA6Ba68e868A4d72CB07",
+  "from": "0x5bD13Bac2F01a4beA2A2cA6Ba68e868A4dt788",
+  "network": "Polygon",
+  "amount": "70,000,000.00 USDT",
+  "to": "0x5bD13Bac2F01a4beA2A2cA6Ba68e868A4d72C",
   "Txnhash": "0x464de7c9386f981239e023111bd08d55aebfb0df4b6964fdff2c023928b2c396"
 }
